@@ -1,0 +1,272 @@
+.landing {
+  font-family: "Segoe UI", sans-serif;
+  color: #111827;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.login-btn {
+  padding: 8px 16px;
+  background:#2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 80px 80px;
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 520px;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 82%;
+  height: 103%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0 0 30px 0;
+  color: #6b7280;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.primary-btn {
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background: #d6dcf0;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* How Section */
+.how {
+  padding: 80px 20px;
+  background: #f9fafb;
+  text-align: center;
+}
+.how h2{
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.cards {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.card {
+  background:#eef2ff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* CTA */
+.cta {
+  padding: 60px 80px;
+  background: #d6dcf0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  margin: 80px;
+  
+}
+.cta h3{
+  font-weight: 700;
+}
+/* Footer */
+.footer {
+  padding: 20px 90px;
+  display: flex;
+  justify-content: space-between;
+  background: #e5e7eb;
+  font-size: 14px;
+}
+
+.footer-links span {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background:white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: #2563eb;
+}
+
+/* Footer left: logo + text aligned horizontally */
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-left .logo-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+}
+
+.footer-left .logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .hero {
+    padding: 40px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta {
+    flex-direction: column;
+    text-align: center;
+    margin: 40px 20px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    padding: 30px 20px;
+  }
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-box {
+  width: 32px;
+  height: 32px;
+  background: #2563eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-text {
+  font-size: 20px;
+  color: #2563eb;
+}

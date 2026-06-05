@@ -1,0 +1,235 @@
+.status-page {
+  min-height: 100vh;
+  background: #f4f6fb;
+  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-topbar {
+  height: 66px;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.status-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.status-brand-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #2563eb;
+  display: grid;
+  place-items: center;
+}
+
+.status-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.status-actions button {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.status-actions .leave-btn {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fee2e2;
+}
+
+.status-main {
+  width: 100%;
+  max-width: 980px;
+  margin: 26px auto 20px;
+  padding: 0 16px;
+}
+
+.status-hero {
+  background: #fff;
+  border: 1px solid #dbe2ee;
+  border-radius: 14px;
+  text-align: center;
+  padding: 34px 20px;
+}
+
+.live-pill {
+  display: inline-block;
+  background: #e8f0ff;
+  color: #2563eb;
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+}
+
+.token-label {
+  letter-spacing: 2px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.turn-alert {
+  margin: 10px auto 6px;
+  display: inline-block;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-hero h1 {
+  font-size: 92px;
+  margin: 8px 0;
+  line-height: 1;
+}
+
+.status-hero p {
+  color: #64748b;
+  font-size: 17px;
+}
+
+.status-cards {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.status-card {
+  background: #fff;
+  border: 1px solid #dbe2ee;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+}
+
+.status-card .icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 10px;
+}
+
+.icon.green {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.icon.orange {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.icon.purple {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.status-card p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.status-card h3 {
+  font-size: 40px;
+  margin-top: 6px;
+}
+
+.status-location {
+  margin-top: 16px;
+  background: #fff;
+  border: 1px solid #dbe2ee;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-location h4 {
+  font-size: 20px;
+}
+
+.status-location p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.status-location button {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.status-error {
+  margin-top: 12px;
+  color: #dc2626;
+  font-size: 13px;
+}
+
+.status-footer {
+  margin-top: auto;
+  height: 48px;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .status-brand {
+    font-size: 20px;
+  }
+
+  .status-hero h1 {
+    font-size: 58px;
+  }
+
+  .status-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .status-card h3 {
+    font-size: 30px;
+  }
+
+  .status-location {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .status-footer {
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 12px;
+    height: auto;
+  }
+}

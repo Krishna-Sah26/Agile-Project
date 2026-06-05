@@ -1,0 +1,67 @@
+.staff-login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.staff-login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.staff-login-card h2 {
+  font-size: 24px;
+  color: #0f172a;
+}
+
+.staff-login-card p {
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.staff-login-card label {
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.staff-login-card input,
+.staff-login-card select {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 11px 12px;
+  outline: none;
+}
+
+.staff-login-card input:focus,
+.staff-login-card select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px #dbeafe;
+}
+
+.staff-login-card button {
+  margin-top: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #2563eb;
+  cursor: pointer;
+}
+
+.staff-login-card button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
