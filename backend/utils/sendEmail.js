@@ -1,60 +1,47 @@
-
+import "../config/env.js";
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
+const emailUser = process.env.EMAIL_USER;
+const emailAppPassword = process.env.EMAIL_APP_PASSWORD;
+const emailFrom = process.env.EMAIL_FROM || (emailUser ? `CampusQ <${emailUser}>` : "CampusQ");
 
-  host: "smtp.gmail.com",
+const transporter = emailUser && emailAppPassword
+  ? nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: emailUser,
+        pass: emailAppPassword
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    })
+  : null;
 
-  port: 587,           // IMPORTANT
+if (transporter) {
+  transporter.verify(function (error) {
+    if (error) {
+      console.log("Gmail transporter error:", error);
+    } else {
+      console.log("Gmail transporter ready");
+    }
+  });
+} else {
+  console.log("Email transporter not configured");
+}
 
-  secure: false,       // false for port 587
-
-  auth: {
-
-    user: "krishnakumarsah483@gmail.com",
-
-    pass: "xcgmmwqeqkaafrmp"   // your app password
-
-  },
-
-  tls: {
-
-    rejectUnauthorized: false
-
-  }
-
-});
-
-
-// Test transporter
-transporter.verify(function (error, success) {
-
-  if (error) {
-
-    console.log("❌ Gmail Transporter Error:", error);
-
-  } else {
-
-    console.log("✅ Gmail Transporter Ready");
-
-  }
-
-});
-
-
-// Send welcome email
 export const sendWelcomeEmail = async (toEmail, orgName) => {
-
   try {
+    if (!transporter) {
+      throw new Error("Email transporter is not configured");
+    }
 
     const mailOptions = {
-
-      from: "CampusQ <krishnakumarsah483@gmail.com>",
-
+      from: emailFrom,
       to: toEmail,
-
-      subject: "Welcome to CampusQ 🎉",
-
+      subject: "Welcome to CampusQ",
       html: `
         <h2>Welcome to CampusQ System</h2>
         <p>Hello ${orgName},</p>
@@ -63,21 +50,13 @@ export const sendWelcomeEmail = async (toEmail, orgName) => {
         <br/>
         <b>CampusQ Team</b>
       `
-
     };
 
     const info = await transporter.sendMail(mailOptions);
-
-    console.log("✅ Email sent:", info.messageId);
-
+    console.log("Email sent:", info.messageId);
+  } catch (error) {
+    console.log("Email Error:", error.message);
   }
-
-  catch (error) {
-
-    console.log("❌ Email Error:", error.message);
-
-  }
-
 };
 
 export const sendStaffInviteEmail = async ({
@@ -89,8 +68,12 @@ export const sendStaffInviteEmail = async ({
   orgName
 }) => {
   try {
+    if (!transporter) {
+      throw new Error("Email transporter is not configured");
+    }
+
     const mailOptions = {
-      from: "CampusQ <krishnakumarsah483@gmail.com>",
+      from: emailFrom,
       to: toEmail,
       subject: "Your CampusQ Staff Account Is Ready",
       html: `

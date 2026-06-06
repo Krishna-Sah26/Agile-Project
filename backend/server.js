@@ -1,5 +1,5 @@
+import "./config/env.js";
 import { sendWelcomeEmail, sendStaffInviteEmail } from "./utils/sendEmail.js";
-import "dotenv/config"; // ADDED: load .env for Twilio and other secrets
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -49,11 +49,16 @@ app.use("/api/admin", adminRoutes); // ADDED: admin queue routes
 app.use("/api/dashboard", dashboardRoutes); // ADDED: dashboard stats
 
 
-mongoose.connect(
-  "mongodb+srv://campusqadmin:krishna1414@cluster0.b1wwauc.mongodb.net/campusq?retryWrites=true&w=majority&appName=Cluster0"
-)
-.then(() => console.log("MongoDB Connected"))
-.catch((err) => console.log(" MongoDB Error:", err.message));
+const mongoUri = process.env.MONGODB_URI;
+
+if (!mongoUri) {
+  console.error("Missing MONGODB_URI in backend/.env");
+  process.exit(1);
+}
+
+mongoose.connect(mongoUri)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(" MongoDB Error:", err.message));
 
 // ADDED: drop old global token unique index (if it exists)
 mongoose.connection.on("open", async () => {
@@ -213,7 +218,15 @@ app.post("/api/create-staff", async (req, res) => {
       });
     }
 
-    const firebaseApiKey = process.env.FIREBASE_API_KEY || "AIzaSyCXfZfCp5cOkVDqWPKEUbAz26jMhjIE4Wk";
+    const firebaseApiKey = process.env.FIREBASE_API_KEY;
+
+    if (!firebaseApiKey) {
+      return res.status(500).json({
+        success: false,
+        message: "FIREBASE_API_KEY is not configured"
+      });
+    }
+
     const firebaseResp = await fetch(
       `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebaseApiKey}`,
       {

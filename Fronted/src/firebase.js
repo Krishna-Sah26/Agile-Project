@@ -3,13 +3,17 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCXfZfCp5cOkVDqWPKEUbAz26jMhjIE4Wk",
-  authDomain: "campusq-d067e.firebaseapp.com",
-  projectId: "campusq-d067e",
-  storageBucket: "campusq-d067e.firebasestorage.app",
-  messagingSenderId: "530183860086",
-  appId: "1:530183860086:web:3ebd6e60aab5c117dcd457",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
+
+if (!firebaseConfig.apiKey) {
+  throw new Error("Missing VITE_FIREBASE_API_KEY in the frontend env file");
+}
 
 const app = initializeApp(firebaseConfig);
 

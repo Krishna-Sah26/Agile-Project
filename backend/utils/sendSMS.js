@@ -1,3 +1,4 @@
+import "../config/env.js";
 import twilio from "twilio";
 
 const {
