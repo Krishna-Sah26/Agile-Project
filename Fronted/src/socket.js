@@ -1,7 +1,8 @@
 import { io } from "socket.io-client";
+import { SOCKET_URL } from "./config";
 
 // ADDED: shared socket instance for real-time updates
-const socket = io("http://localhost:5000");
+const socket = io(SOCKET_URL);
 
 // ADDED: helper to join/leave queue rooms
 export const joinQueueRoom = (queueId) => {

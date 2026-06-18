@@ -185,6 +185,7 @@ import {
   Clock, QrCode, Pencil, Users, Timer, LayoutGrid, 
   Building2
 } from 'lucide-react';
+import { API_URL } from "../config";
 import socket from '../socket'; // ADDED: realtime socket client
 
 
@@ -394,7 +395,7 @@ const Dashboard = () => {
 
   const handleQR = async (id) => { // ADDED: backend QR fetch function
     try {
-      const res = await fetch(`http://localhost:5000/api/queue/qr/${id}`);
+      const res = await fetch(`${API_URL}/api/queue/qr/${id}`);
       const data = await res.json();
       setQrImage(data.qr);
       setShowQR(true);
@@ -431,7 +432,7 @@ const Dashboard = () => {
     if (!user?.orgName) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/queues?organization=${encodeURIComponent(user.orgName)}`
+        `${API_URL}/api/admin/queues?organization=${encodeURIComponent(user.orgName)}`
       );
       const data = await res.json();
       if (data.success) {
@@ -462,7 +463,7 @@ const Dashboard = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/api/admin/create-queue", {
+      const res = await fetch(`${API_URL}/api/admin/create-queue`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -486,7 +487,7 @@ const Dashboard = () => {
   // ADDED: toggle queue status
   const handleToggleQueue = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/admin/toggle-queue/${id}`, {
+      await fetch(`${API_URL}/api/admin/toggle-queue/${id}`, {
         method: "PUT"
       });
     } catch (error) {
@@ -498,7 +499,7 @@ const Dashboard = () => {
   const fetchStats = async () => {
     try {
       const org = user?.orgName ? `?organization=${encodeURIComponent(user.orgName)}` : "";
-      const res = await fetch(`http://localhost:5000/api/dashboard/stats${org}`);
+      const res = await fetch(`${API_URL}/api/dashboard/stats${org}`);
       const data = await res.json();
       setStats({
         totalQueues: data.totalQueues || 0,
@@ -533,7 +534,7 @@ const Dashboard = () => {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/create-staff",
+        `${API_URL}/api/create-staff`,
         {
           method: "POST",
           headers: {

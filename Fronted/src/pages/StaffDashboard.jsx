@@ -4,6 +4,7 @@ import StatsCards from '../components/staff/StatsCards';
 import NowServing from '../components/staff/NowServing';
 import UpNextPanel from '../components/staff/UpNextPanel';
 import ActionButtons from '../components/staff/ActionButtons';
+import { API_URL } from "../config";
 import socket, { joinQueueRoom, leaveQueueRoom } from '../socket'; // ADDED: socket.io client
 import '../styles/staff.css';
 
@@ -28,7 +29,7 @@ const StaffDashboard = () => {
     if (!queueId) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/api/queue/list?status=waiting&queueId=${encodeURIComponent(queueId)}`
+        `${API_URL}/api/queue/list?status=waiting&queueId=${encodeURIComponent(queueId)}`
       );
       const data = await res.json();
       if (data.success) {
@@ -47,7 +48,7 @@ const StaffDashboard = () => {
     if (!queueId) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/api/queue/list?status=serving&limit=1&queueId=${encodeURIComponent(queueId)}`
+        `${API_URL}/api/queue/list?status=serving&limit=1&queueId=${encodeURIComponent(queueId)}`
       );
       const data = await res.json();
       if (data.success) {
@@ -64,8 +65,8 @@ const StaffDashboard = () => {
     if (!queueId) return;
     try {
       const url = queueId
-        ? `http://localhost:5000/api/queue/stats?queueId=${queueId}`
-        : "http://localhost:5000/api/queue/stats";
+        ? `${API_URL}/api/queue/stats?queueId=${queueId}`
+        : `${API_URL}/api/queue/stats`;
       const res = await fetch(url);
       const data = await res.json();
       if (data.success) {
@@ -83,7 +84,7 @@ const StaffDashboard = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/api/queue/call-next", {
+      const res = await fetch(`${API_URL}/api/queue/call-next`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ queueId: activeQueueId })
@@ -111,7 +112,7 @@ const StaffDashboard = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/api/queue/mark-served", {
+      const res = await fetch(`${API_URL}/api/queue/mark-served`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: serving.token, queueId: activeQueueId })
@@ -138,7 +139,7 @@ const StaffDashboard = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/api/queue/skip", {
+      const res = await fetch(`${API_URL}/api/queue/skip`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: waiting[0].token, queueId: activeQueueId })
@@ -166,7 +167,7 @@ const StaffDashboard = () => {
     if (!staffProfile?.orgName) return;
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/queues?organization=${encodeURIComponent(staffProfile.orgName)}`
+        `${API_URL}/api/admin/queues?organization=${encodeURIComponent(staffProfile.orgName)}`
       );
       const data = await res.json();
       if (data.success) {
@@ -266,7 +267,7 @@ const StaffDashboard = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/api/queue/join", {
+      const res = await fetch(`${API_URL}/api/queue/join`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -298,7 +299,7 @@ const StaffDashboard = () => {
     }
     try {
       const res = await fetch(
-        `http://localhost:5000/api/admin/toggle-queue/${activeQueue._id}`,
+        `${API_URL}/api/admin/toggle-queue/${activeQueue._id}`,
         { method: "PUT" }
       );
       const data = await res.json();

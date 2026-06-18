@@ -2,6 +2,7 @@ import { LayoutGrid } from "lucide-react";
 import { useState } from "react";
 import "../index.css";
 import { auth } from "../firebase";
+import { API_URL } from "../config";
 
 import {
   createUserWithEmailAndPassword,
@@ -167,7 +168,7 @@ async function handleGoogleLogin() {
     if (!isLogin && form.orgName && form.type) {
       // SAVE TO BACKEND
       const response = await fetch(
-        "http://localhost:5000/api/register",
+        `${API_URL}/api/register`,
         {
           method: "POST",
           headers: {
@@ -213,7 +214,7 @@ async function handleGoogleLogin() {
 
     // ✅ Case 3: Login Mode - Just use email directly
     else if (isLogin) {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -263,7 +264,7 @@ async function handleGoogleLogin() {
         );
 
       // GET USER FROM BACKEND
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -308,7 +309,7 @@ async function handleGoogleLogin() {
         );
 
       // SAVE IN MONGODB
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch(`${API_URL}/api/register`, {
 
         method: "POST",
 

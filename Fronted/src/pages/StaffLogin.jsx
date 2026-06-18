@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import { API_URL } from "../config";
 import "./StaffLogin.css";
 
 function StaffLogin() {
@@ -24,7 +25,7 @@ function StaffLogin() {
     try {
       await signInWithEmailAndPassword(auth, form.email, form.password);
 
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.email }),

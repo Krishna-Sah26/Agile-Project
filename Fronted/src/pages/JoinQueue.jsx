@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Building2, Clock3, Users, User, Smartphone, ArrowRight, LayoutGrid } from "lucide-react";
+import { API_URL } from "../config";
 import socket from "../socket"; // ADDED: realtime updates
 import "./JoinQueue.css";
 
@@ -40,7 +41,7 @@ function JoinQueue() {
 
     async function fetchQueueDetails() {
       try {
-        const res = await fetch(`http://localhost:5000/api/queue/${id}`);
+        const res = await fetch(`${API_URL}/api/queue/${id}`);
         const data = await res.json();
 
         if (isMounted) {
@@ -123,7 +124,7 @@ function JoinQueue() {
     try {
       setSubmitting(true);
 
-      const res = await fetch("http://localhost:5000/api/queue/join", {
+      const res = await fetch(`${API_URL}/api/queue/join`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

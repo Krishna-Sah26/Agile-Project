@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { LayoutGrid, Megaphone, Clock3, Users } from "lucide-react";
+import { API_URL } from "../config";
 import socket, { joinQueueRoom, leaveQueueRoom } from "../socket"; // ADDED: socket.io client
 import "./QueueStatus.css";
 
@@ -33,8 +34,8 @@ function QueueStatus() {
     try {
       const queueId = queryQueueId || status?.queue?.id || status?.queueId;
       const url = queueId
-        ? `http://localhost:5000/api/queue/status/${token}?queueId=${encodeURIComponent(queueId)}`
-        : `http://localhost:5000/api/queue/status/${token}`;
+        ? `${API_URL}/api/queue/status/${token}?queueId=${encodeURIComponent(queueId)}`
+        : `${API_URL}/api/queue/status/${token}`;
       const res = await fetch(url);
       const data = await res.json();
 
@@ -56,8 +57,8 @@ function QueueStatus() {
     try {
       const queueId = queryQueueId || status?.queue?.id || status?.queueId;
       const url = queueId
-        ? `http://localhost:5000/api/queue/position/${token}?queueId=${encodeURIComponent(queueId)}`
-        : `http://localhost:5000/api/queue/position/${token}`;
+        ? `${API_URL}/api/queue/position/${token}?queueId=${encodeURIComponent(queueId)}`
+        : `${API_URL}/api/queue/position/${token}`;
       const res = await fetch(url);
       const data = await res.json();
       if (data.success) {

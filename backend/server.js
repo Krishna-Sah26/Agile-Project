@@ -114,8 +114,18 @@ app.post("/api/register", async (req, res) => {
 });
 
 // server start
-server.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+server.on("error", (error) => {
+  if (error.code === "EADDRINUSE") {
+    console.error(`Port ${PORT} is already in use. Stop the other process or set a different PORT in backend/.env.`);
+  } else {
+    console.error("Server error:", error);
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 
