@@ -16,5 +16,4 @@ export const leaveQueueRoom = (queueId) => {
     socket.emit("leaveQueueRoom", queueId);
   }
 };
-
 export default socket;
